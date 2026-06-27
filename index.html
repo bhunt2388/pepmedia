@@ -1,0 +1,1835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PepMedia — The Peptide Marketing Agency</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #000000;
+      --deep: #080808;
+      --surface: #0d0d0d;
+      --card: #111111;
+      --border: rgba(255,255,255,0.08);
+      --border-hover: rgba(255,255,255,0.16);
+      --text: #ffffff;
+      --muted: rgba(255,255,255,0.5);
+      --dim: rgba(255,255,255,0.28);
+      --accent1: #6c47ff;
+      --accent2: #2e9bff;
+      --accent3: #00e5c3;
+      --grad: linear-gradient(135deg, #6c47ff, #2e9bff);
+      --grad-text: linear-gradient(135deg, #a87cff, #47b8ff, #00e5c3);
+      --font: 'Inter', sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--black);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 68px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo-mark {
+      width: 36px;
+      height: 36px;
+      background: var(--grad);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 16px;
+      letter-spacing: -0.5px;
+      color: #fff;
+    }
+
+    .nav-logo-text {
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: var(--text);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 20px;
+      border: 1px solid rgba(108,71,255,0.5);
+      background: rgba(108,71,255,0.12);
+      color: #a87cff;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 6px;
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: all 0.2s;
+    }
+
+    .nav-cta:hover {
+      background: rgba(108,71,255,0.22);
+      border-color: rgba(108,71,255,0.8);
+      color: #fff;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 140px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .hero-bg-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.15;
+    }
+
+    .hero-bg-orb.orb1 {
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, #6c47ff, transparent);
+      top: -100px; left: -100px;
+    }
+
+    .hero-bg-orb.orb2 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, #2e9bff, transparent);
+      top: 200px; right: -120px;
+    }
+
+    .hero-bg-orb.orb3 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, #00e5c3, transparent);
+      bottom: -80px; left: 40%;
+    }
+
+    /* Grid overlay */
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    .hero-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      color: var(--dim);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hero-label::before,
+    .hero-label::after {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--dim);
+    }
+
+    h1 {
+      font-size: clamp(44px, 7vw, 88px);
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: -0.04em;
+      max-width: 900px;
+      margin-bottom: 28px;
+    }
+
+    .gradient-text {
+      background: var(--grad-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      background-size: 200% 200%;
+      animation: gradShift 4s ease infinite;
+    }
+
+    @keyframes gradShift {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      background: var(--grad);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: 8px;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: opacity 0.2s, transform 0.2s;
+      box-shadow: 0 8px 32px rgba(108,71,255,0.35);
+    }
+
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border: 1px solid var(--border-hover);
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 8px;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: all 0.2s;
+    }
+
+    .btn-ghost:hover {
+      border-color: rgba(255,255,255,0.3);
+      color: var(--text);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 48px;
+      margin-top: 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-stat {
+      text-align: center;
+    }
+
+    .hero-stat-value {
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      background: var(--grad-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-stat-label {
+      font-size: 12px;
+      color: var(--dim);
+      font-family: var(--mono);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: var(--dim);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      animation: scrollBounce 2s ease-in-out infinite;
+    }
+
+    .hero-scroll svg {
+      opacity: 0.4;
+    }
+
+    @keyframes scrollBounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ── MARQUEE ── */
+    .marquee-section {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+      padding: 18px 0;
+      background: var(--surface);
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 0;
+      animation: marqueeScroll 28s linear infinite;
+      white-space: nowrap;
+    }
+
+    .marquee-item {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 0 28px;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--dim);
+    }
+
+    .marquee-item .dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--accent1);
+      opacity: 0.6;
+      flex-shrink: 0;
+    }
+
+    .marquee-item.bright { color: var(--muted); }
+
+    @keyframes marqueeScroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ── SECTION SHELL ── */
+    section {
+      padding: 120px 48px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--dim);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: clamp(36px, 5vw, 60px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin-bottom: 20px;
+    }
+
+    .section-sub {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 520px;
+      line-height: 1.7;
+      margin-bottom: 60px;
+    }
+
+    /* ── DIVISIONS ── */
+    #divisions {
+      padding: 120px 0;
+      max-width: 100%;
+      border-top: 1px solid var(--border);
+      background: var(--deep);
+    }
+
+    .divisions-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .divisions-left {}
+
+    .divisions-list {
+      list-style: none;
+      margin-top: 40px;
+    }
+
+    .division-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+    }
+
+    .division-item:first-child { border-top: 1px solid var(--border); }
+
+    .division-item::before {
+      content: '';
+      position: absolute;
+      left: -48px; right: -48px;
+      top: 0; bottom: 0;
+      background: rgba(108,71,255,0.05);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .division-item:hover::before,
+    .division-item.active::before { opacity: 1; }
+
+    .division-item-left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .division-num {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--dim);
+      width: 22px;
+    }
+
+    .division-name {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      transition: color 0.2s;
+    }
+
+    .division-item:hover .division-name,
+    .division-item.active .division-name {
+      color: #a87cff;
+    }
+
+    .division-tag {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: var(--dim);
+      text-transform: uppercase;
+    }
+
+    .division-arrow {
+      font-size: 16px;
+      color: var(--dim);
+      transition: all 0.2s;
+    }
+
+    .division-item:hover .division-arrow,
+    .division-item.active .division-arrow {
+      color: #a87cff;
+      transform: translateX(4px);
+    }
+
+    /* Division preview card */
+    .divisions-right {
+      position: sticky;
+      top: 100px;
+    }
+
+    .division-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 36px;
+      display: none;
+    }
+
+    .division-card.active { display: block; }
+
+    .division-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+
+    .division-card-num {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--dim);
+    }
+
+    .division-card-live {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--accent3);
+      letter-spacing: 0.1em;
+    }
+
+    .division-card-live::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--accent3);
+      border-radius: 50%;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%,100% { opacity: 1; }
+      50%      { opacity: 0.3; }
+    }
+
+    .division-card-title {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .division-card-vertical {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: var(--dim);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .division-card-desc {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+
+    .division-card-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .card-stat {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+    }
+
+    .card-stat-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.15em;
+      color: var(--dim);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .card-stat-value {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: var(--grad-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .division-card-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 22px;
+      background: rgba(108,71,255,0.15);
+      border: 1px solid rgba(108,71,255,0.4);
+      color: #a87cff;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 7px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .division-card-cta:hover {
+      background: rgba(108,71,255,0.28);
+      color: #fff;
+    }
+
+    /* ── SERVICES ── */
+    #services {
+      border-top: 1px solid var(--border);
+    }
+
+    .services-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: end;
+      margin-bottom: 60px;
+    }
+
+    .services-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .service-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 24px;
+      border: 1px solid transparent;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .service-row:hover,
+    .service-row.active {
+      background: var(--card);
+      border-color: var(--border);
+    }
+
+    .service-row-left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .service-num {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--dim);
+      width: 22px;
+    }
+
+    .service-name {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .service-row:hover .service-name,
+    .service-row.active .service-name {
+      background: var(--grad-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .service-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--border-hover);
+      transition: background 0.2s;
+    }
+
+    .service-row:hover .service-dot,
+    .service-row.active .service-dot {
+      background: var(--accent1);
+    }
+
+    .service-detail {
+      display: none;
+      padding: 0 24px 22px 66px;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .service-row.active + .service-detail { display: block; }
+
+    /* ── AI EDGE ── */
+    #edge {
+      border-top: 1px solid var(--border);
+      background: var(--deep);
+      max-width: 100%;
+      padding: 120px 0;
+    }
+
+    .edge-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    .edge-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 60px;
+    }
+
+    .edge-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 36px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .edge-card:hover {
+      border-color: rgba(108,71,255,0.3);
+      transform: translateY(-2px);
+    }
+
+    .edge-card-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(108,71,255,0.12);
+      border: 1px solid rgba(108,71,255,0.25);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-size: 22px;
+    }
+
+    .edge-card-title {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 4px;
+    }
+
+    .edge-card-vertical {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: var(--dim);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .edge-card-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .edge-card-metric {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .edge-card-metric-value {
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      background: var(--grad-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .edge-card-metric-label {
+      font-size: 13px;
+      color: var(--dim);
+      line-height: 1.4;
+    }
+
+    /* ── PROCESS ── */
+    #process {
+      border-top: 1px solid var(--border);
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 60px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .process-step {
+      background: var(--card);
+      padding: 36px 30px;
+      position: relative;
+    }
+
+    .process-step:hover { background: #161616; }
+
+    .process-step-num {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--dim);
+      margin-bottom: 16px;
+    }
+
+    .process-step-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    .process-step-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .process-step-tag {
+      display: inline-block;
+      margin-top: 16px;
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.15em;
+      padding: 4px 10px;
+      background: rgba(108,71,255,0.1);
+      color: #a87cff;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+
+    /* ── RESULTS ── */
+    #results {
+      border-top: 1px solid var(--border);
+      background: var(--deep);
+      max-width: 100%;
+      padding: 120px 0;
+    }
+
+    .results-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 60px;
+    }
+
+    .result-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 30px;
+      text-align: center;
+      transition: border-color 0.2s;
+    }
+
+    .result-card:hover {
+      border-color: rgba(108,71,255,0.35);
+    }
+
+    .result-icon {
+      font-size: 28px;
+      margin-bottom: 14px;
+    }
+
+    .result-value {
+      font-size: 42px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      background: var(--grad-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradShift 4s ease infinite;
+      margin-bottom: 6px;
+    }
+
+    .result-label {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ── VS SECTION ── */
+    #vs {
+      border-top: 1px solid var(--border);
+    }
+
+    .vs-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 60px;
+    }
+
+    .vs-table th {
+      padding: 16px 24px;
+      text-align: left;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--dim);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .vs-table th:nth-child(2) { color: var(--muted); }
+    .vs-table th:nth-child(3) { color: #a87cff; }
+
+    .vs-table td {
+      padding: 16px 24px;
+      font-size: 14px;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .vs-table tr:hover td {
+      background: rgba(255,255,255,0.015);
+    }
+
+    .vs-table td:first-child {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .check { color: var(--accent3); font-size: 16px; }
+    .cross { color: rgba(255,255,255,0.2); font-size: 16px; }
+
+    /* ── CTA BANNER ── */
+    .cta-banner {
+      background: var(--deep);
+      border-top: 1px solid var(--border);
+      padding: 120px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-banner::before {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(108,71,255,0.15), transparent);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .cta-banner h2 {
+      max-width: 720px;
+      margin: 0 auto 20px;
+    }
+
+    .cta-banner p {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto 40px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .footer-copy {
+      font-size: 13px;
+      color: var(--dim);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      font-size: 13px;
+      color: var(--dim);
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--muted); }
+
+    /* ── COUNTER ANIMATION ── */
+    .counter { display: inline-block; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .divisions-inner { grid-template-columns: 1fr; }
+      .divisions-right { position: relative; top: 0; }
+      .results-grid { grid-template-columns: repeat(2, 1fr); }
+      .process-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      section { padding: 80px 20px; }
+      .hero-stats { flex-wrap: wrap; gap: 28px; justify-content: center; }
+      .services-header { grid-template-columns: 1fr; }
+      .edge-grid { grid-template-columns: 1fr; }
+      .results-grid { grid-template-columns: 1fr 1fr; }
+      .process-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 20px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVIGATION ── -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-mark">P</div>
+    <span class="nav-logo-text">PepMedia</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#divisions">Divisions</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#edge">Edge</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Book a Call →</a>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <div class="hero-bg">
+    <div class="hero-bg-orb orb1"></div>
+    <div class="hero-bg-orb orb2"></div>
+    <div class="hero-bg-orb orb3"></div>
+  </div>
+
+  <div class="hero-label">Peptide Marketing Agency</div>
+
+  <h1>The Marketing Agency<br /><span class="gradient-text">Built for Peptides.</span></h1>
+
+  <p class="hero-sub">
+    Performance marketing for peptide brands, wellness companies, and research chemical suppliers — running paid media, SEO, and compliant creative that actually converts.
+  </p>
+
+  <div class="hero-actions">
+    <a href="#contact" class="btn-primary">Get a Free Audit →</a>
+    <a href="#divisions" class="btn-ghost">View Our Work</a>
+  </div>
+
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-value"><span class="counter" data-target="6.4" data-decimals="1" data-suffix="x">6.4x</span></div>
+      <div class="hero-stat-label">Average ROAS</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-value"><span class="counter" data-target="120" data-prefix="$" data-suffix="M+">$120M+</span></div>
+      <div class="hero-stat-label">Revenue Generated</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-value"><span class="counter" data-target="290" data-suffix="%">290%</span></div>
+      <div class="hero-stat-label">Avg ROI Increase</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-value"><span class="counter" data-target="8" data-suffix="+">8+</span></div>
+      <div class="hero-stat-label">Verticals Served</div>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    SCROLL TO EXPLORE
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+  </div>
+</section>
+
+<!-- ── MARQUEE ── -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <!-- doubled for seamless loop -->
+    <div class="marquee-item bright"><span class="dot"></span> Paid Media</div>
+    <div class="marquee-item"><span class="dot"></span> Peptide Ads</div>
+    <div class="marquee-item bright"><span class="dot"></span> Full Stack Creative</div>
+    <div class="marquee-item"><span class="dot"></span> Wellness Brands</div>
+    <div class="marquee-item bright"><span class="dot"></span> Funnel Optimization</div>
+    <div class="marquee-item"><span class="dot"></span> Lifecycle & Retention</div>
+    <div class="marquee-item bright"><span class="dot"></span> Compliance-First Creative</div>
+    <div class="marquee-item"><span class="dot"></span> Data & Intelligence</div>
+    <div class="marquee-item bright"><span class="dot"></span> AI & Automation</div>
+    <div class="marquee-item"><span class="dot"></span> Research Chemical Marketing</div>
+    <!-- duplicate -->
+    <div class="marquee-item bright"><span class="dot"></span> Paid Media</div>
+    <div class="marquee-item"><span class="dot"></span> Peptide Ads</div>
+    <div class="marquee-item bright"><span class="dot"></span> Full Stack Creative</div>
+    <div class="marquee-item"><span class="dot"></span> Wellness Brands</div>
+    <div class="marquee-item bright"><span class="dot"></span> Funnel Optimization</div>
+    <div class="marquee-item"><span class="dot"></span> Lifecycle & Retention</div>
+    <div class="marquee-item bright"><span class="dot"></span> Compliance-First Creative</div>
+    <div class="marquee-item"><span class="dot"></span> Data & Intelligence</div>
+    <div class="marquee-item bright"><span class="dot"></span> AI & Automation</div>
+    <div class="marquee-item"><span class="dot"></span> Research Chemical Marketing</div>
+  </div>
+</div>
+
+<!-- ── DIVISIONS ── -->
+<div id="divisions" style="border-top: 1px solid var(--border); background: var(--deep);">
+  <div class="divisions-inner" style="max-width:1280px; margin:0 auto; padding:120px 48px; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start;">
+    <div class="divisions-left">
+      <div class="section-label">[ Specialist Divisions ]</div>
+      <h2 style="font-size:clamp(32px,4.5vw,52px);">Specialist verticals,<br />one growth engine.</h2>
+      <p class="section-sub">Each division is a niche powerhouse tuned to its regulatory environment, audience behavior, and creative constraints. Hover to preview.</p>
+
+      <ul class="divisions-list" id="divisionList">
+        <li class="division-item active" data-index="0">
+          <div class="division-item-left">
+            <span class="division-num">01</span>
+            <span class="division-name">Peptide Ads</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;">
+            <span class="division-tag">Wellness</span>
+            <span class="division-arrow">↗</span>
+          </div>
+        </li>
+        <li class="division-item" data-index="1">
+          <div class="division-item-left">
+            <span class="division-num">02</span>
+            <span class="division-name">Research Chemical Ads</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;">
+            <span class="division-tag">Rx-Adjacent</span>
+            <span class="division-arrow">↗</span>
+          </div>
+        </li>
+        <li class="division-item" data-index="2">
+          <div class="division-item-left">
+            <span class="division-num">03</span>
+            <span class="division-name">Telehealth Ads</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;">
+            <span class="division-tag">Healthcare</span>
+            <span class="division-arrow">↗</span>
+          </div>
+        </li>
+        <li class="division-item" data-index="3">
+          <div class="division-item-left">
+            <span class="division-num">04</span>
+            <span class="division-name">Supplement Ads</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;">
+            <span class="division-tag">Supplements</span>
+            <span class="division-arrow">↗</span>
+          </div>
+        </li>
+        <li class="division-item" data-index="4">
+          <div class="division-item-left">
+            <span class="division-num">05</span>
+            <span class="division-name">Wellness DTC Ads</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;">
+            <span class="division-tag">E-Commerce</span>
+            <span class="division-arrow">↗</span>
+          </div>
+        </li>
+        <li class="division-item" data-index="5">
+          <div class="division-item-left">
+            <span class="division-num">06</span>
+            <span class="division-name">Longevity Brands</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;">
+            <span class="division-tag">Anti-Aging</span>
+            <span class="division-arrow">↗</span>
+          </div>
+        </li>
+        <li class="division-item" data-index="6">
+          <div class="division-item-left">
+            <span class="division-num">07</span>
+            <span class="division-name">Full-Stack Creative</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;">
+            <span class="division-tag">Creative Agency</span>
+            <span class="division-arrow">↗</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="divisions-right" id="divisionCards">
+      <!-- Card 0: Peptide Ads -->
+      <div class="division-card active">
+        <div class="division-card-header">
+          <span class="division-card-num">01 / 07</span>
+          <span class="division-card-live">LIVE VERTICAL</span>
+        </div>
+        <h3 class="division-card-title">Peptide Ads</h3>
+        <div class="division-card-vertical">Wellness</div>
+        <p class="division-card-desc">Conversion-engineered paid media for peptide brands navigating platform restrictions. We know which claims fly and which get you banned — and we've built compliant creative that drives real revenue.</p>
+        <div class="division-card-stats">
+          <div class="card-stat">
+            <div class="card-stat-label">Avg ROAS</div>
+            <div class="card-stat-value">6.4×</div>
+          </div>
+          <div class="card-stat">
+            <div class="card-stat-label">Spend Managed</div>
+            <div class="card-stat-value">$2.1M</div>
+          </div>
+          <div class="card-stat">
+            <div class="card-stat-label">Avg CPA</div>
+            <div class="card-stat-value">$41</div>
+          </div>
+        </div>
+        <a href="#contact" class="division-card-cta">Get Started →</a>
+      </div>
+
+      <!-- Card 1: Research Chemical -->
+      <div class="division-card">
+        <div class="division-card-header">
+          <span class="division-card-num">02 / 07</span>
+          <span class="division-card-live">LIVE VERTICAL</span>
+        </div>
+        <h3 class="division-card-title">Research Chemical Ads</h3>
+        <div class="division-card-vertical">Rx-Adjacent</div>
+        <p class="division-card-desc">Specialist campaigns for research compound suppliers. Compliance-aware bidding and audience segmentation built specifically for the gray-area ad landscape.</p>
+        <div class="division-card-stats">
+          <div class="card-stat">
+            <div class="card-stat-label">Avg ROAS</div>
+            <div class="card-stat-value">5.1×</div>
+          </div>
+          <div class="card-stat">
+            <div class="card-stat-label">Spend Managed</div>
+            <div class="card-stat-value">$900K</div>
+          </div>
+          <div class="card-stat">
+            <div class="card-stat-label">Avg CPA</div>
+            <div class="card-stat-value">$58</div>
+          </div>
+        </div>
+        <a href="#contact" class="division-card-cta">Get Started →</a>
+      </div>
+
+      <!-- Card 2: Telehealth -->
+      <div class="division-card">
+        <div class="division-card-header">
+          <span class="division-card-num">03 / 07</span>
+          <span class="division-card-live">LIVE VERTICAL</span>
+        </div>
+        <h3 class="division-card-title">Telehealth Ads</h3>
+        <div class="division-card-vertical">Healthcare</div>
+        <p class="division-card-desc">Patient acquisition campaigns for telehealth clinics and online health platforms. HIPAA-aware targeting with conversion infrastructure built for regulated healthcare.</p>
+        <div class="division-card-stats">
+          <div class="card-stat">
+            <div class="card-stat-label">Avg ROAS</div>
+            <div class="card-stat-value">4.8×</div>
+          </div>
+          <div class="card-stat">
+            <div class="card-stat-label">Spend Managed</div>
+            <div class="card-stat-value">$1.4M</div>
+          </div>
+          <div class="card-stat">
+            <div class="card-stat-label">Avg CPA</div>
+            <div class="card-stat-value">$62</div>
+          </div>
+        </div>
+        <a href="#contact" class="division-card-cta">Get Started →</a>
+      </div>
+
+      <!-- Card 3: Supplement -->
+      <div class="division-card">
+        <div class="division-card-header">
+          <span class="division-card-num">04 / 07</span>
+          <span class="division-card-live">LIVE VERTICAL</span>
+        </div>
+        <h3 class="division-card-title">Supplement Ads</h3>
+        <div class="division-card-vertical">Supplements</div>
+        <p class="division-card-desc">Full-funnel paid media for supplement brands — from cold traffic acquisition to repeat-purchase lifecycle automation. DTC-native, subscription-optimized.</p>
+        <div class="division-card-stats">
+          <div class="card-stat">
+            <div class="card-stat-label">Avg ROAS</div>
+            <div class="card-stat-value">7.2×</div>
+          </div>
+          <div class="card-stat">
+            <div class="card-stat-label">Spend Managed</div>
+            <div class="card-stat-value">$3.2M</div>
+          </div>
+          <div class="card-stat">
+            <div class="card-stat-label">Avg CPA</div>
+            <div class="card-stat-value">$34</div>
+          </div>
+        </div>
+        <a href="#contact" class="division-card-cta">Get Started →</a>
+      </div>
+
+      <!-- Card 4: Wellness DTC -->
+      <div class="division-card">
+        <div class="division-card-header">
+          <span class="division-card-num">05 / 07</span>
+          <span class="division-card-live">LIVE VERTICAL</span>
+        </div>
+        <h3 class="division-card-title">Wellness DTC Ads</h3>
+        <div class="division-card-vertical">E-Commerce</div>
+        <p class="division-card-desc">Direct-to-consumer growth for wellness brands selling online. Advantage+ scaling, smart retargeting, and high-velocity creative testing built for Shopify and WooCommerce stores.</p>
+        <div class="division-card-stats">
+          <div class="card-stat">
+            <div class="card-stat-label">Avg ROAS</div>
+            <div class="card-stat-value">8.1×</div>
+          </div>
+          <div class="card-stat">
+            <div class="card-stat-label">Spend Managed</div>
+            <div class="card-stat-value">$4.5M</div>
+          </div>
+          <div class="card-stat">
+            <div class="card-stat-label">Avg CPA</div>
+            <div class="card-stat-value">$29</div>
+          </div>
+        </div>
+        <a href="#contact" class="division-card-cta">Get Started →</a>
+      </div>
+
+      <!-- Card 5: Longevity -->
+      <div class="division-card">
+        <div class="division-card-header">
+          <span class="division-card-num">06 / 07</span>
+          <span class="division-card-live">LIVE VERTICAL</span>
+        </div>
+        <h3 class="division-card-title">Longevity Brands</h3>
+        <div class="division-card-vertical">Anti-Aging</div>
+        <p class="division-card-desc">Growth marketing for longevity, biohacking, and anti-aging brands. High-LTV customer acquisition with NMN, NAD+, senolytics, and peptide longevity protocols front and center.</p>
+        <div class="division-card-stats">
+          <div class="card-stat">
+            <div class="card-stat-label">Avg ROAS</div>
+            <div class="card-stat-value">5.9×</div>
+          </div>
+          <div class="card-stat">
+            <div class="card-stat-label">Spend Managed</div>
+            <div class="card-stat-value">$1.8M</div>
+          </div>
+          <div class="card-stat">
+            <div class="card-stat-label">Avg CPA</div>
+            <div class="card-stat-value">$47</div>
+          </div>
+        </div>
+        <a href="#contact" class="division-card-cta">Get Started →</a>
+      </div>
+
+      <!-- Card 6: Creative -->
+      <div class="division-card">
+        <div class="division-card-header">
+          <span class="division-card-num">07 / 07</span>
+          <span class="division-card-live">LIVE VERTICAL</span>
+        </div>
+        <h3 class="division-card-title">Full-Stack Creative</h3>
+        <div class="division-card-vertical">Creative Agency</div>
+        <p class="division-card-desc">Static, video, UGC, and motion graphics purpose-built for peptide and wellness brands. Compliance-aware copy and visuals that convert on Meta, TikTok, and Google without triggering ad disapprovals.</p>
+        <div class="division-card-stats">
+          <div class="card-stat">
+            <div class="card-stat-label">Variants / Week</div>
+            <div class="card-stat-value">200+</div>
+          </div>
+          <div class="card-stat">
+            <div class="card-stat-label">Test Speed</div>
+            <div class="card-stat-value">12×</div>
+          </div>
+          <div class="card-stat">
+            <div class="card-stat-label">Disapproval Rate</div>
+            <div class="card-stat-value">&lt;2%</div>
+          </div>
+        </div>
+        <a href="#contact" class="division-card-cta">Get Started →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── SERVICES ── -->
+<section id="services">
+  <div class="services-header">
+    <div>
+      <div class="section-label">[ The Full Growth Stack ]</div>
+      <h2>Every service a peptide brand needs to scale.</h2>
+    </div>
+    <p style="font-size:16px;color:var(--muted);line-height:1.7;">We run the entire growth infrastructure — from the first ad impression to the retention email three months later. No handoffs, no gaps.</p>
+  </div>
+
+  <div class="services-list">
+    <div class="service-row active" onclick="toggleService(this)">
+      <div class="service-row-left">
+        <span class="service-num">01</span>
+        <span class="service-name">Paid Media</span>
+      </div>
+      <span class="service-dot"></span>
+    </div>
+    <div class="service-detail">Google Ads, Meta Ads, TikTok Ads. Search, Performance Max, YouTube, Advantage+, Spark Ads. Full platform coverage with compliant bid strategies built for health and wellness accounts.</div>
+
+    <div class="service-row" onclick="toggleService(this)">
+      <div class="service-row-left">
+        <span class="service-num">02</span>
+        <span class="service-name">Full Stack Creative</span>
+      </div>
+      <span class="service-dot"></span>
+    </div>
+    <div class="service-detail">Static ads, video ads, UGC, motion graphics, landing page design. Every asset is compliance-reviewed before launch. We produce hundreds of variants per week powered by AI creative testing.</div>
+
+    <div class="service-row" onclick="toggleService(this)">
+      <div class="service-row-left">
+        <span class="service-num">03</span>
+        <span class="service-name">Funnel Optimization</span>
+      </div>
+      <span class="service-dot"></span>
+    </div>
+    <div class="service-detail">CRO, landing page architecture, checkout optimization, upsell flows. We audit the full path from click to purchase and rebuild anything bleeding revenue.</div>
+
+    <div class="service-row" onclick="toggleService(this)">
+      <div class="service-row-left">
+        <span class="service-num">04</span>
+        <span class="service-name">Lifecycle & Retention</span>
+      </div>
+      <span class="service-dot"></span>
+    </div>
+    <div class="service-detail">Email, SMS, push. Klaviyo, Postscript, and Attentive workflows for peptide reorder cycles, education sequences, and LTV maximization. We turn one-time buyers into subscribers.</div>
+
+    <div class="service-row" onclick="toggleService(this)">
+      <div class="service-row-left">
+        <span class="service-num">05</span>
+        <span class="service-name">AI & Automation</span>
+      </div>
+      <span class="service-dot"></span>
+    </div>
+    <div class="service-detail">Predictive audience modeling, dynamic creative engines, intelligent bid orchestration, and 24/7 optimization cycles. Our AI stack runs what would take a team of 12 to manage manually.</div>
+
+    <div class="service-row" onclick="toggleService(this)">
+      <div class="service-row-left">
+        <span class="service-num">06</span>
+        <span class="service-name">Data & Intelligence</span>
+      </div>
+      <span class="service-dot"></span>
+    </div>
+    <div class="service-detail">Unified dashboards across Google, Meta, TikTok, and your backend revenue data (Shopify, WooCommerce). We measure ROAS, blended CAC, contribution margin, and incrementality — not CTR or CPM.</div>
+
+    <div class="service-row" onclick="toggleService(this)">
+      <div class="service-row-left">
+        <span class="service-num">07</span>
+        <span class="service-name">Growth Strategy</span>
+      </div>
+      <span class="service-dot"></span>
+    </div>
+    <div class="service-detail">Category mapping, competitive analysis, channel sequencing, pricing strategy, and offer architecture. We build the 90-day and 12-month growth playbook before we touch your ad account.</div>
+
+    <div class="service-row" onclick="toggleService(this)">
+      <div class="service-row-left">
+        <span class="service-num">08</span>
+        <span class="service-name">Compliance & Regulatory</span>
+      </div>
+      <span class="service-dot"></span>
+    </div>
+    <div class="service-detail">Platform policy compliance for health, wellness, and Rx-adjacent products. We know what Meta, Google, and TikTok allow in 2024 and have built pre-approved creative frameworks for peptide categories.</div>
+  </div>
+</section>
+
+<!-- ── AI EDGE ── -->
+<div id="edge" style="border-top:1px solid var(--border); background:var(--deep);">
+  <div class="edge-inner" style="max-width:1280px; margin:0 auto; padding:120px 48px;">
+    <div class="section-label">[ Our AI Competitive Advantage ]</div>
+    <h2>Four systems competitors<br /><span class="gradient-text">can't replicate.</span></h2>
+
+    <div class="edge-grid">
+      <div class="edge-card">
+        <div class="edge-card-icon">🧬</div>
+        <div class="edge-card-title">Predictive Audience Discovery</div>
+        <div class="edge-card-vertical">Peptides · Wellness · Supplements</div>
+        <p class="edge-card-desc">Vertical-tuned lookalike modeling and LTV scoring built specifically for peptide customer behavior patterns. We know this audience better than any generalist agency.</p>
+        <div class="edge-card-metric">
+          <div class="edge-card-metric-value">340%</div>
+          <div class="edge-card-metric-label">Higher ROI<br />vs. generalist targeting</div>
+        </div>
+      </div>
+
+      <div class="edge-card">
+        <div class="edge-card-icon">⚡</div>
+        <div class="edge-card-title">Dynamic Creative Engine</div>
+        <div class="edge-card-vertical">DTC · Wellness · E-Commerce</div>
+        <p class="edge-card-desc">AI-generated creative variants tested at 12x the speed of manual production. Every frame is compliance-reviewed in real time before launch — no human bottleneck.</p>
+        <div class="edge-card-metric">
+          <div class="edge-card-metric-value">12×</div>
+          <div class="edge-card-metric-label">Faster creative testing<br />than traditional agencies</div>
+        </div>
+      </div>
+
+      <div class="edge-card">
+        <div class="edge-card-icon">🎯</div>
+        <div class="edge-card-title">Intelligent Bid Orchestration</div>
+        <div class="edge-card-vertical">Regulated Verticals · High-Risk</div>
+        <p class="edge-card-desc">Compliance-aware bid algorithms that navigate peptide, research chemical, and Rx-adjacent restrictions across platforms. Cross-channel budget allocation that adapts in hours, not weeks.</p>
+        <div class="edge-card-metric">
+          <div class="edge-card-metric-value">-67%</div>
+          <div class="edge-card-metric-label">Lower CPA<br />from day 45 onward</div>
+        </div>
+      </div>
+
+      <div class="edge-card">
+        <div class="edge-card-icon">📡</div>
+        <div class="edge-card-title">Vertical Intelligence Platform</div>
+        <div class="edge-card-vertical">Telehealth · Longevity · Rx-Adjacent</div>
+        <p class="edge-card-desc">NLP monitoring across SEO, competitor ads, and regulatory channels. We see what's working in peptide marketing before your competitors do — and we move faster.</p>
+        <div class="edge-card-metric">
+          <div class="edge-card-metric-value">89%</div>
+          <div class="edge-card-metric-label">Targeting accuracy<br />on wellness intent signals</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── PROCESS ── -->
+<section id="process">
+  <div class="section-label">[ How We Launch ]</div>
+  <h2>Live campaigns in 7–14 days.</h2>
+  <p class="section-sub">No month-long onboarding. No strategy decks with no action. We're inside your ad account and shipping creative in week one.</p>
+
+  <div class="process-grid">
+    <div class="process-step">
+      <div class="process-step-num">PHASE 01</div>
+      <div class="process-step-title">Account + Compliance Audit</div>
+      <p class="process-step-desc">Pixel audit, conversion tracking verification, ad account health check, and a compliance review of existing creative against current platform policies for your vertical.</p>
+      <span class="process-step-tag">Week 1</span>
+    </div>
+    <div class="process-step">
+      <div class="process-step-num">PHASE 02</div>
+      <div class="process-step-title">Creative Production</div>
+      <p class="process-step-desc">High-velocity creative production — static, video, UGC angles. All compliance-reviewed before launch. We go wide on day one to find winners fast.</p>
+      <span class="process-step-tag">Week 1–2</span>
+    </div>
+    <div class="process-step">
+      <div class="process-step-num">PHASE 03</div>
+      <div class="process-step-title">Account Architecture</div>
+      <p class="process-step-desc">Campaign structure, audience segmentation, bidding strategy, and tracking infrastructure designed for your specific peptide offer and customer acquisition goals.</p>
+      <span class="process-step-tag">Week 2</span>
+    </div>
+    <div class="process-step">
+      <div class="process-step-num">PHASE 04</div>
+      <div class="process-step-title">Controlled Launch</div>
+      <p class="process-step-desc">Live campaigns with daily monitoring. First data signals within 72 hours. We cut losers fast, double down on winners, and report blended CAC daily.</p>
+      <span class="process-step-tag">Day 7–14</span>
+    </div>
+    <div class="process-step">
+      <div class="process-step-num">PHASE 05</div>
+      <div class="process-step-title">30–45 Day Performance Lift</div>
+      <p class="process-step-desc">Most clients see 30–60% ROAS improvement inside 45 days from a standing start. This is when lifecycle campaigns layer on top of paid to compound results.</p>
+      <span class="process-step-tag">Day 30–45</span>
+    </div>
+    <div class="process-step">
+      <div class="process-step-num">PHASE 06</div>
+      <div class="process-step-title">Scale & Compound</div>
+      <p class="process-step-desc">Once unit economics are locked in, we expand channels, increase spend, and compound knowledge. Most clients 2–3x spend between month 3 and month 12.</p>
+      <span class="process-step-tag">Month 2+</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── RESULTS ── -->
+<div id="results" style="border-top:1px solid var(--border); background:var(--deep);">
+  <div class="results-inner" style="max-width:1280px; margin:0 auto; padding:120px 48px;">
+    <div class="section-label">[ Results That Speak ]</div>
+    <h2>Numbers from live accounts.</h2>
+    <p class="section-sub">These are real metrics from real peptide and wellness brand campaigns we manage.</p>
+
+    <div class="results-grid">
+      <div class="result-card">
+        <div class="result-icon">📈</div>
+        <div class="result-value">6.4×</div>
+        <div class="result-label">Average ROAS across all peptide verticals</div>
+      </div>
+      <div class="result-card">
+        <div class="result-icon">💰</div>
+        <div class="result-value">$120M+</div>
+        <div class="result-label">Client revenue generated in 2023–2024</div>
+      </div>
+      <div class="result-card">
+        <div class="result-icon">🎯</div>
+        <div class="result-value">91%</div>
+        <div class="result-label">AI targeting accuracy on wellness intent</div>
+      </div>
+      <div class="result-card">
+        <div class="result-icon">⚡</div>
+        <div class="result-value">-58%</div>
+        <div class="result-label">Wasted ad spend eliminated at account takeover</div>
+      </div>
+      <div class="result-card">
+        <div class="result-icon">🔄</div>
+        <div class="result-value">290%</div>
+        <div class="result-label">Average ROI increase within first 90 days</div>
+      </div>
+      <div class="result-card">
+        <div class="result-icon">⏱️</div>
+        <div class="result-value">14 days</div>
+        <div class="result-label">From kickoff call to live campaigns</div>
+      </div>
+      <div class="result-card">
+        <div class="result-icon">📊</div>
+        <div class="result-value">24/7</div>
+        <div class="result-label">Automated AI optimization cycles running</div>
+      </div>
+      <div class="result-card">
+        <div class="result-icon">✅</div>
+        <div class="result-value">&lt;2%</div>
+        <div class="result-label">Ad disapproval rate on health category creative</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── VS TABLE ── -->
+<section id="vs">
+  <div class="section-label">[ Why Vertical Beats Generalist ]</div>
+  <h2>What you actually get with a<br /><span class="gradient-text">specialist agency.</span></h2>
+
+  <table class="vs-table">
+    <thead>
+      <tr>
+        <th>Capability</th>
+        <th>Generic Marketing Agency</th>
+        <th>PepMedia</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Platform compliance knowledge</td>
+        <td>Generic health policies</td>
+        <td><span class="check">✓</span> Peptide-specific, updated weekly</td>
+      </tr>
+      <tr>
+        <td>Creative frameworks</td>
+        <td>Repurposed wellness templates</td>
+        <td><span class="check">✓</span> Built for peptide/research chem claims</td>
+      </tr>
+      <tr>
+        <td>Audience intelligence</td>
+        <td>Broad interest targeting</td>
+        <td><span class="check">✓</span> Behavioral models trained on this vertical</td>
+      </tr>
+      <tr>
+        <td>Regulatory monitoring</td>
+        <td><span class="cross">✗</span> Not standard</td>
+        <td><span class="check">✓</span> Real-time via Vertical Intelligence Platform</td>
+      </tr>
+      <tr>
+        <td>Banned account recovery</td>
+        <td><span class="cross">✗</span> Unknown</td>
+        <td><span class="check">✓</span> In-house process, 1–3 business days</td>
+      </tr>
+      <tr>
+        <td>CAC for your niche</td>
+        <td>Estimated from unrelated categories</td>
+        <td><span class="check">✓</span> Benchmarked from live peptide accounts</td>
+      </tr>
+      <tr>
+        <td>Pricing power</td>
+        <td>Race to the bottom</td>
+        <td><span class="check">✓</span> Premium positioning, no race to compete</td>
+      </tr>
+      <tr>
+        <td>Time to live campaigns</td>
+        <td>4–8 weeks</td>
+        <td><span class="check">✓</span> 7–14 days</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ── CTA BANNER ── -->
+<div class="cta-banner" id="contact">
+  <h2>Ready to scale<br /><span class="gradient-text">your peptide brand?</span></h2>
+  <p>Minimum $20K/month in managed ad spend. Most clients see payback inside 90 days. Let's start with a free account audit.</p>
+  <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+    <a href="mailto:hello@pepmedia.com" class="btn-primary" style="font-size:15px;padding:16px 32px;">Book a Free Audit →</a>
+    <a href="mailto:hello@pepmedia.com" class="btn-ghost" style="font-size:15px;padding:16px 32px;">hello@pepmedia.com</a>
+  </div>
+  <div style="margin-top:48px;display:flex;gap:40px;justify-content:center;flex-wrap:wrap;">
+    <div style="text-align:center;">
+      <div style="font-size:13px;color:var(--dim);font-family:var(--mono);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;">Min Ad Spend</div>
+      <div style="font-size:22px;font-weight:800;">$20K/mo</div>
+    </div>
+    <div style="text-align:center;">
+      <div style="font-size:13px;color:var(--dim);font-family:var(--mono);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;">Go-Live Timeline</div>
+      <div style="font-size:22px;font-weight:800;">7–14 Days</div>
+    </div>
+    <div style="text-align:center;">
+      <div style="font-size:13px;color:var(--dim);font-family:var(--mono);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;">Management Fee</div>
+      <div style="font-size:22px;font-weight:800;">$5K–$20K/mo</div>
+    </div>
+    <div style="text-align:center;">
+      <div style="font-size:13px;color:var(--dim);font-family:var(--mono);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;">Typical Payback</div>
+      <div style="font-size:22px;font-weight:800;">90 Days</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <a href="#" class="footer-logo" style="text-decoration:none;">
+    <div class="nav-logo-mark">P</div>
+    <span style="font-size:16px;font-weight:700;color:var(--text);">PepMedia</span>
+  </a>
+  <span class="footer-copy">© 2025 PepMedia. Peptide Marketing Agency.</span>
+  <ul class="footer-links">
+    <li><a href="#">Privacy</a></li>
+    <li><a href="#">Terms</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</footer>
+
+<script>
+  // ── Division tabs ──
+  const divisionItems = document.querySelectorAll('.division-item');
+  const divisionCards = document.querySelectorAll('.division-card');
+
+  divisionItems.forEach((item, i) => {
+    item.addEventListener('mouseenter', () => {
+      divisionItems.forEach(d => d.classList.remove('active'));
+      divisionCards.forEach(c => c.classList.remove('active'));
+      item.classList.add('active');
+      divisionCards[i].classList.add('active');
+    });
+  });
+
+  // Keep last active on mouseleave
+  document.querySelector('#divisionList').addEventListener('mouseleave', () => {
+    // keep last hovered active — do nothing
+  });
+
+  // ── Service accordion ──
+  function toggleService(row) {
+    const wasActive = row.classList.contains('active');
+    document.querySelectorAll('.service-row').forEach(r => r.classList.remove('active'));
+    if (!wasActive) row.classList.add('active');
+  }
+
+  // ── Counter animation ──
+  function animateCounter(el) {
+    const target = parseFloat(el.dataset.target);
+    const decimals = parseInt(el.dataset.decimals || 0);
+    const prefix = el.dataset.prefix || '';
+    const suffix = el.dataset.suffix || '';
+    const duration = 1800;
+    const start = performance.now();
+
+    function step(now) {
+      const elapsed = Math.min(now - start, duration);
+      const progress = elapsed / duration;
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = target * eased;
+      el.textContent = prefix + current.toFixed(decimals) + suffix;
+      if (elapsed < duration) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  // Intersection observer for counters
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounter(entry.target);
+        counterObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+
+  // ── Nav active state on scroll ──
+  const sections = document.querySelectorAll('section[id], div[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      const top = s.offsetTop - 100;
+      if (window.scrollY >= top) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current
+        ? 'var(--text)'
+        : '';
+    });
+  });
+</script>
+</body>
+</html>
