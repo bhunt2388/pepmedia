@@ -1,1 +1,9 @@
 .vercel
+.next
+node_modules
+out
+*.log
+.env*
+!.env.example
+DESIGN.md
+*.tsbuildinfo
