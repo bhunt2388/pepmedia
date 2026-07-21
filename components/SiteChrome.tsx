@@ -36,7 +36,7 @@ export function SiteHeader() {
       <div className="header-actions">
         <a
           className="client-login"
-          href="https://pepmedia-dashboard.vercel.app/login"
+          href="http://platform.pepmediaco.com/"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -68,7 +68,7 @@ export function SiteHeader() {
           Book a Call <ArrowUpRight aria-hidden="true" />
         </Link>
         <a
-          href="https://pepmedia-dashboard.vercel.app/login"
+          href="http://platform.pepmediaco.com/"
           target="_blank"
           rel="noopener noreferrer"
           onClick={closeMenu}
